@@ -1,43 +1,72 @@
 <body>
-<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <div
-      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-      <div class="d-flex align-items-center justify-content-center w-100">
-        <div class="row justify-content-center w-100">
-          <div class="col-md-8 col-lg-6 col-xxl-3">
-            <div class="card mb-0">
-              <div class="card-body">
-                <?php if ($this->session->flashdata('error_login') == true){
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+            <div class="login-brand">
+              <img src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+            </div>
+            <?php if ($this->session->flashdata('error_login') == true){
                   ?>
-                  <div class="alert alert-danger" role="alert">Username atau password yang Anda masukkan salah!</div>
+                  <div class="alert alert-danger" role="alert">username atau password salah. silahkan coba lagi.</div>
                   <?php
                 }
                 ?>
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="<?= base_url('')?>/assets/img/logo.jpg" class="rounded-circle" width="100" alt="">
-                </a>
-                <p class="text-center fw-bold fs-5">Wellcome to Rekam Medis</p>
-                <form action="<?= base_url('Login/Auth')?>" method="POST">
-                  <div class="mb-3">
-                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="username" autocomplete="off">
+            <div class="card card-primary">
+              <div class="card-header"><h4>Login</h4></div>
+
+              <div class="card-body">
+                <form method="POST" action="<?php echo base_url() ?>Login/Auth" class="needs-validation" novalidate="">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
+                    <div class="invalid-feedback">
+                      Please fill in your username
+                    </div>
                   </div>
-                  <div class="mb-4">
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="password" autocomplete="off">
+
+                  <div class="form-group">
+                    <div class="d-block">
+                    	<label for="password" class="control-label">Password</label>
+                    </div>
+                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                    <div class="invalid-feedback">
+                      please fill in your password
+                    </div>
                   </div>
-                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                      Login
+                    </button>
+                  </div>
                 </form>
               </div>
+            </div>
+            <div class="simple-footer">
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 
-  <script src="<?php echo base_url() ?>assets/Modernize-1.0.0/src/assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="<?php echo base_url() ?>assets/Modernize-1.0.0/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- General JS Scripts -->
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/modules/jquery.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/modules/popper.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/modules/tooltip.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/modules/moment.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/js/stisla.js"></script>
+  
+  <!-- JS Libraies -->
 
+  <!-- Page Specific JS File -->
+  
+  <!-- Template JS File -->
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/js/scripts.js"></script>
+  <script src="<?php echo base_url() ?>assets/stisla-1-2.2.0/dist/assets/js/custom.js"></script>
 </body>
-
 </html>

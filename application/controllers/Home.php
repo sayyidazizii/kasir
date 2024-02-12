@@ -16,12 +16,12 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-        $data['user']           = $this->db->count_all('user');
-        $data['obat']           = $this->db->count_all('obat');
-        $data['rekam_medis']    = $this->db->count_all('rekam_medis');
+        // $data['user']           = $this->db->count_all('user');
+        // $data['obat']           = $this->db->count_all('obat');
+        // $data['rekam_medis']    = $this->db->count_all('rekam_medis');
 
-        // Memanggil fungsi count_rekam_medis_per_day() dari model M_rekamMedis
-        $data['jumlah_rekam_medis_per_hari'] = $this->M_rekamMedis->count_rekam_medis_per_day();
+        // // Memanggil fungsi count_rekam_medis_per_day() dari model M_rekamMedis
+        // $data['jumlah_rekam_medis_per_hari'] = $this->M_rekamMedis->count_rekam_medis_per_day();
 
         // echo json_encode($data);
         // exit;
@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 		$this->load->view('layout/header');
 		$this->load->view('layout/sidebar');
 		$this->load->view('layout/navbar');
-		$this->load->view('home',$data);
+		$this->load->view('home');
 		$this->load->view('layout/footer');
 	}
 

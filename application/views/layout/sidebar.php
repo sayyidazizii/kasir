@@ -1,103 +1,55 @@
-<aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="<?= base_url('')?>" class="d-flex align-items-center">
-          <img src="<?= base_url('')?>/assets/img/logo.jpg" class="rounded-circle" width="40" alt="">
-          <span class="fw-bolder text-dark fs-6 mx-2">REKAM MEDIS</span>
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
+
+<div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="index.html">Kasir</a>
           </div>
-        </div>
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-          <ul id="sidebarnav">
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
+          <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index.html">K</a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Dashboard</li>
+            <li class="dropdown active">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-home"></i><span>Dashboard</span></a>
+              <ul class="dropdown-menu">
+                <li class=active><a class="nav-link" href="index.html">Dashboard</a></li>
+              </ul>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('Home') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
+            <li class="menu-header">Menu</li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Persediaan</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="layout-default.html">Produk</a></li>
+                <li><a class="nav-link" href="layout-transparent.html">Stok barang</a></li>
+              </ul>
             </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Menu</span>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i> <span>Pembelian</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="bootstrap-alert.html">Pembelian</a></li>
+              </ul>
             </li>
-            <?php if($_SESSION['level'] == 1 ){?>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('Pasien') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-user"></i>
-                </span>
-                <span class="hide-menu">Data Pasien</span>
-              </a>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-shopping-cart"></i> <span>Penjualan</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="bootstrap-alert.html">Penjualan</a></li>
+              </ul>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('Tarif') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-receipt-tax"></i>
-                </span>
-                <span class="hide-menu">Data Tarif</span>
-              </a>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i> <span>Laporan</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="auth-forgot-password.html">Laporan Pembelian</a></li> 
+                <li><a href="auth-login.html">Laporan Penjualan</a></li> 
+              </ul>
             </li>
-            <?php } ?>
-            <?php if($_SESSION['level'] == 3){?>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('Obat') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-pill"></i>
-                </span>
-                <span class="hide-menu">Data Obat</span>
-              </a>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i> <span>Utility</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="auth-forgot-password.html">Pengguna</a></li> 
+                <li><a href="auth-reset-password.html">Reset Password</a></li> 
+              </ul>
             </li>
-            <?php } ?>
-            <?php if($_SESSION['level'] == 1 || $_SESSION['level'] == 2){?>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('RekamMedis') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-file-description"></i>
-                </span>
-                <span class="hide-menu">Rekam Medis</span>
-              </a>
-            </li>
-            <?php if($_SESSION['level'] == 1){?>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('Payment') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-file-dollar"></i>
-                </span>
-                <span class="hide-menu">Pembayaran</span>
-              </a>
-            </li>
-            <?php } ?>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('Report') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-typography"></i>
-                </span>
-                <span class="hide-menu">Laporan</span>
-              </a>
-            </li>
-            <?php } ?>
-            <?php if($_SESSION['level'] == 0  ){?>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo base_url('User') ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-user"></i>
-                </span>
-                <span class="hide-menu">User</span>
-              </a>
-            </li>
-            <?php } ?>
           </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
+
+        </aside>
       </div>
-      <!-- End Sidebar scroll-->
-    </aside>
