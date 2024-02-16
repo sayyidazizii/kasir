@@ -1,3 +1,7 @@
+.. image:: ![Contoh Gambar](https://github.com/sayyidazizii/kasir/issues/1#issue-2137785169)
+    :alt: Contoh Gambar
+
+
 ###################
 What is CodeIgniter
 ###################
