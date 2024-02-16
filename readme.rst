@@ -1,4 +1,4 @@
-.. image:: ![Contoh Gambar](https://github.com/sayyidazizii/kasir/issues/1#issue-2137785169)
+.. image:: https://github.com/sayyidazizii/kasir/blob/main/assets/img/dashboard.png
     :alt: Contoh Gambar
 
 
