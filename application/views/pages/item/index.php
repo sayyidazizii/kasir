@@ -8,6 +8,10 @@
             </div>
           </div>
 
+          <?php if ($this->session->flashdata('alert')): ?>
+                  <?php echo $this->session->flashdata('alert'); ?>
+          <?php endif; ?>
+
           <div class="section-body">
             <div class="row">
               <div class="col">
@@ -17,11 +21,11 @@
                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> tambah data</button>
                     </h4>
                     <div class="card-header-form">
-                      <form>
+                      <form action="<?= base_url() ?>Item" method="get">
                         <div class="input-group">
-                          <input id="myInput" type="text" class="form-control" placeholder="Search">
+                          <input type="text" name="search" class="form-control" value="<?php if ($pencarian != null) {echo $pencarian;} ?>" placeholder="Search">
                           <div class="input-group-btn">
-                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                           </div>
                         </div>
                       </form>
@@ -53,8 +57,8 @@
                             <td><?=$value->item_unit_cost ?></td>
                             <td><?=$value->item_unit_price ?></td>
                             <td>
-                            <a href="" class="btn btn-warning"><i class="fas fa-pen"></i> </a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i> </a>
+                            <a href="<?php echo base_url() ?>Item/edit/<?= $value->item_id ?>" class="btn btn-warning"><i class="fas fa-pen"></i> </a>
+                            <a href="#" class="btn btn-danger" onclick="return confirmDelete('<?= $value->item_id ?>');"><i class="fas fa-trash"></i> </a>
                             </td>
                           </tr>
                           <?php endforeach ?>
@@ -96,20 +100,33 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              <form action="<?php echo base_url() ?>Item/processAdd" method="POST">
               <div class="modal-body">
                 <label for="item_name">Nama Barang</label>
-                <input type="text" name="item_name" id="item_name" class="form-control form-control-sm">
+                <input type="text" name="item_name" id="item_name" class="form-control form-control-sm" required>
                 <label for="item_code">Kode Barang</label>
-                <input type="text" name="item_code" id="item_code" class="form-control form-control-sm">
+                <input type="text" name="item_code" id="item_code" class="form-control form-control-sm" required>
                 <label for="item_unit_cost">Harga Beli</label>
-                <input type="text" name="item_unit_cost" id="item_unit_cost" class="form-control form-control-sm">
+                <input type="text" name="item_unit_cost" id="item_unit_cost" class="form-control form-control-sm" required>
                 <label for="item_unit_price">Harga Jual</label>
-                <input type="text" name="item_unit_price" id="item_unit_price" class="form-control form-control-sm">
+                <input type="text" name="item_unit_price" id="item_unit_price" class="form-control form-control-sm" required>
               </div>
               <div class="modal-footer bg-whitesmoke br">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
               </div>
+              </form>
             </div>
           </div>
         </div>
+
+        <script>
+          function confirmDelete(Id) {
+              if (confirm('Apakah Anda yakin ingin menghapus data ini ?')) {
+                  window.location.href = '<?php echo base_url() ?>Item/hapus/' + Id;
+              } else {
+                  return false;
+              }
+              console.log(Id)
+          }
+        </script>

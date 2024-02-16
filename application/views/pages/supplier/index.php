@@ -8,6 +8,10 @@
             </div>
           </div>
 
+          <?php if ($this->session->flashdata('alert')): ?>
+                  <?php echo $this->session->flashdata('alert'); ?>
+          <?php endif; ?>
+
           <div class="section-body">
             <div class="row">
               <div class="col">
@@ -51,8 +55,8 @@
                             <td><?=$value->supplier_address ?></td>
                             <td><?=$value->supplier_phone ?></td>
                             <td>
-                            <a href="" class="btn btn-warning"><i class="fas fa-pen"></i> </a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i> </a>
+                            <a href="<?php echo base_url() ?>Supplier/edit/<?= $value->supplier_id ?>" class="btn btn-warning"><i class="fas fa-pen"></i> </a>
+                            <a href="#" class="btn btn-danger" onclick="return confirmDelete('<?= $value->supplier_id ?>');"><i class="fas fa-trash"></i> </a>
                             </td>
                           </tr>
                           <?php endforeach ?>
@@ -84,8 +88,8 @@
         </section>
       </div>
 
-      <!-- modal add data -->
-      <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+     <!-- modal add data -->
+     <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -94,20 +98,31 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              <form action="<?php echo base_url() ?>Supplier/processAdd" method="POST">
               <div class="modal-body">
-                <label for="item_name">Nama Barang</label>
-                <input type="text" name="item_name" id="item_name" class="form-control form-control-sm">
-                <label for="item_code">Kode Barang</label>
-                <input type="text" name="item_code" id="item_code" class="form-control form-control-sm">
-                <label for="item_unit_cost">Harga Beli</label>
-                <input type="text" name="item_unit_cost" id="item_unit_cost" class="form-control form-control-sm">
-                <label for="item_unit_price">Harga Jual</label>
-                <input type="text" name="item_unit_price" id="item_unit_price" class="form-control form-control-sm">
+                <label for="supplier_name">Nama Supplier</label>
+                <input type="text" name="supplier_name" id="supplier_name" class="form-control form-control-sm" required>
+                <label for="supplier_address">Alamat Supplier</label>
+                <input type="text" name="supplier_address" id="supplier_address" class="form-control form-control-sm" required>
+                <label for="supplier_phone">Telepon</label>
+                <input type="text" name="supplier_phone" id="supplier_phone" class="form-control form-control-sm" required>
               </div>
               <div class="modal-footer bg-whitesmoke br">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
               </div>
+              </form>
             </div>
           </div>
         </div>
+
+        <script>
+          function confirmDelete(Id) {
+              if (confirm('Apakah Anda yakin ingin menghapus data ini ?')) {
+                  window.location.href = '<?php echo base_url() ?>Supplier/hapus/' + Id;
+              } else {
+                  return false;
+              }
+              console.log(Id)
+          }
+        </script>

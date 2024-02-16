@@ -23,6 +23,7 @@
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?php echo base_url() ?>Item">Produk</a></li>
                 <li><a class="nav-link" href="<?php echo base_url() ?>ItemStock">Stok barang</a></li>
+                <li><a class="nav-link" href="<?php echo base_url() ?>ItemStock">Mutasi Stock</a></li>
               </ul>
             </li>
             <li class="dropdown">

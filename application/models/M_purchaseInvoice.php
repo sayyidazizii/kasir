@@ -6,7 +6,7 @@ class M_purchaseInvoice extends CI_Model
 
     function get_data()
     {
-        return $this->db->get($this->table)->result();
+        return $this->db->get_where($this->table, array('data_state' => 0))->result();
     }
 
     function save($data)

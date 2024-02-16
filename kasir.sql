@@ -30,9 +30,12 @@ CREATE TABLE `customer` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `customer` */
+
+insert  into `customer`(`customer_id`,`customer_name`,`customer_address`,`customer_phone`,`data_state`,`created_id`,`created_at`,`updated_at`) values 
+(1,'Sayyid','Karanganyar,Indonesia','0816317831',0,1,'2024-02-16 00:33:30','2024-02-16 00:36:33');
 
 /*Table structure for table `item` */
 
@@ -49,12 +52,16 @@ CREATE TABLE `item` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `item` */
 
 insert  into `item`(`item_id`,`item_name`,`item_code`,`item_unit_cost`,`item_unit_price`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
-(1,'Kopi Kapal Api','000001',1000,1500,1,0,'2024-02-14 22:50:07','2024-02-14 22:50:09');
+(1,'Kopi Kapal Api','000001',1000,1500,1,0,'2024-02-14 22:50:07','2024-02-14 22:50:09'),
+(2,'Larutan Penyegar Cap badak 50ml','000002',2000,5000,1,0,NULL,NULL),
+(3,'Sepatu ','000003',50000,100000,1,0,NULL,'2024-02-15 15:11:30'),
+(4,'1221','12',12,12,1,1,NULL,NULL),
+(5,'1','1',1,1,1,1,NULL,NULL);
 
 /*Table structure for table `item_stock` */
 
@@ -64,18 +71,39 @@ CREATE TABLE `item_stock` (
   `item_stock_id` int NOT NULL AUTO_INCREMENT,
   `item_id` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
-  `item_stock_date` date DEFAULT NULL,
-  `purchase_invoice_id` int DEFAULT NULL,
-  `sales_invoice_id` int DEFAULT NULL,
+  `item_unit_cost` decimal(20,0) DEFAULT NULL,
+  `item_unit_price` decimal(20,0) DEFAULT NULL,
   `item_stock_status` int DEFAULT NULL,
   `created_id` int DEFAULT NULL,
   `data_state` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`item_stock_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `item_stock` */
+
+insert  into `item_stock`(`item_stock_id`,`item_id`,`quantity`,`item_unit_cost`,`item_unit_price`,`item_stock_status`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
+(1,1,50,NULL,NULL,1,1,0,NULL,NULL);
+
+/*Table structure for table `item_stock_mutation` */
+
+DROP TABLE IF EXISTS `item_stock_mutation`;
+
+CREATE TABLE `item_stock_mutation` (
+  `item_stock_mutation_id` int NOT NULL AUTO_INCREMENT,
+  `transaction_no` varchar(255) DEFAULT NULL,
+  `item_id` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `item_stock_mutation_date` date DEFAULT NULL,
+  `created_id` int DEFAULT NULL,
+  `data_state` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`item_stock_mutation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `item_stock_mutation` */
 
 /*Table structure for table `purchase_invoice` */
 
@@ -167,9 +195,13 @@ CREATE TABLE `supplier` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `supplier` */
+
+insert  into `supplier`(`supplier_id`,`supplier_name`,`supplier_address`,`supplier_phone`,`data_state`,`created_id`,`created_at`,`updated_at`) values 
+(1,'Pabrik Obat Herbal','jakarta,indonesia','086763536',0,1,'2024-02-15 16:01:29','2024-02-16 00:36:56'),
+(2,'Sidomuncul','Jakarta,indonesia','0982137091',0,1,'2024-02-15 16:02:18','2024-02-16 00:36:48');
 
 /*Table structure for table `user` */
 

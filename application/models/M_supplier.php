@@ -6,7 +6,7 @@ class M_supplier extends CI_Model
 
     function get_data()
     {
-        return $this->db->get($this->table)->result();
+        return $this->db->get_where($this->table, array('data_state' => 0))->result();
     }
 
     function save($data)
@@ -26,7 +26,7 @@ class M_supplier extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
-    function save_update($supplier_id, $data)
+    function update($supplier_id, $data)
     {
         $this->db->where('supplier_id', $supplier_id);
         $this->db->update($this->table, $data);

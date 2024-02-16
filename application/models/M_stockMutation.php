@@ -1,8 +1,8 @@
 <?php
 
-class M_stock extends CI_Model
+class M_stockMutation extends CI_Model
 {
-    public $table = 'item_stock';
+    public $table = 'item_stock_mutation';
 
     function get_data()
     {
