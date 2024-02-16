@@ -1,5 +1,3 @@
-
-![dashboard](https://github.com/sayyidazizii/kasir/assets/68958131/d42f2f29-524c-493a-a236-18d1db5cef19)
 ###################
 What is CodeIgniter
 ###################
