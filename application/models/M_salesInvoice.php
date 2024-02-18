@@ -10,6 +10,15 @@ class M_salesInvoice extends CI_Model
 
     }
 
+    public function insert_invoice($data)
+    {
+        // Simpan data ke dalam tabel Sales Invoice
+        $this->db->insert($this->table, $data);
+
+        // Kembalikan ID invoice yang baru saja disimpan
+        return $this->db->insert_id();
+    }
+
     function save($data)
     {
         $this->db->insert($this->table, $data);

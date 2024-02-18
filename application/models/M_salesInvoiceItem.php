@@ -9,6 +9,12 @@ class M_salesInvoiceItem extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    public function insert_item($data)
+    {
+        // Simpan data ke dalam tabel Sales Invoice Item
+        $this->db->insert('sales_invoice_item', $data);
+    }
+
     function save($data)
     {
         $this->db->insert($this->table, $data);

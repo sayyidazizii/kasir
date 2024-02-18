@@ -16,27 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`kasir` /*!40100 DEFAULT CHARACTER SET u
 
 USE `kasir`;
 
-/*Table structure for table `customer` */
-
-DROP TABLE IF EXISTS `customer`;
-
-CREATE TABLE `customer` (
-  `customer_id` int NOT NULL AUTO_INCREMENT,
-  `customer_name` varchar(255) DEFAULT NULL,
-  `customer_address` text,
-  `customer_phone` varchar(255) DEFAULT NULL,
-  `data_state` int DEFAULT '0',
-  `created_id` int DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-/*Data for the table `customer` */
-
-insert  into `customer`(`customer_id`,`customer_name`,`customer_address`,`customer_phone`,`data_state`,`created_id`,`created_at`,`updated_at`) values 
-(1,'Sayyid','Karanganyar,Indonesia','0816317831',0,1,'2024-02-16 00:33:30','2024-02-16 00:36:33');
-
 /*Table structure for table `item` */
 
 DROP TABLE IF EXISTS `item`;
@@ -45,8 +24,8 @@ CREATE TABLE `item` (
   `item_id` int NOT NULL AUTO_INCREMENT,
   `item_name` varchar(255) DEFAULT NULL,
   `item_code` varchar(255) DEFAULT NULL,
-  `item_unit_cost` decimal(20,0) DEFAULT NULL,
   `item_unit_price` decimal(20,0) DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
   `created_id` int DEFAULT NULL,
   `data_state` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -56,12 +35,12 @@ CREATE TABLE `item` (
 
 /*Data for the table `item` */
 
-insert  into `item`(`item_id`,`item_name`,`item_code`,`item_unit_cost`,`item_unit_price`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
-(1,'Kopi Kapal Api','000001',1000,1500,1,0,'2024-02-14 22:50:07','2024-02-14 22:50:09'),
-(2,'Larutan Penyegar Cap badak 50ml','000002',2000,5000,1,0,NULL,NULL),
-(3,'Sepatu ','000003',50000,100000,1,0,NULL,'2024-02-15 15:11:30'),
-(4,'1221','12',12,12,1,1,NULL,NULL),
-(5,'1','1',1,1,1,1,NULL,NULL);
+insert  into `item`(`item_id`,`item_name`,`item_code`,`item_unit_price`,`quantity`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
+(1,'Kopi Kapal Api','000001',1500,10,1,0,'2024-02-14 22:50:07','2024-02-18 12:31:40'),
+(2,'Larutan Penyegar Cap badak 50ml','000002',5000,100,1,0,NULL,'2024-02-18 12:31:44'),
+(3,'Sepatu ','000003',100000,100,1,0,NULL,'2024-02-18 12:31:49'),
+(4,'1221','12',12,NULL,1,1,NULL,NULL),
+(5,'1','1',1,NULL,1,1,NULL,NULL);
 
 /*Table structure for table `item_stock` */
 
@@ -105,44 +84,6 @@ CREATE TABLE `item_stock_mutation` (
 
 /*Data for the table `item_stock_mutation` */
 
-/*Table structure for table `purchase_invoice` */
-
-DROP TABLE IF EXISTS `purchase_invoice`;
-
-CREATE TABLE `purchase_invoice` (
-  `purchase_invoice_id` int NOT NULL AUTO_INCREMENT,
-  `supplier_id` int DEFAULT NULL,
-  `purchase_invoice_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `purchase_invoice_date` datetime DEFAULT NULL,
-  `purchase_invoice_amount` decimal(20,0) DEFAULT NULL,
-  `purchase_invoice_payment` decimal(20,0) DEFAULT NULL,
-  `purchase_invoice_change` decimal(20,0) DEFAULT NULL,
-  `created_id` int DEFAULT NULL,
-  `data_state` int DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`purchase_invoice_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-/*Data for the table `purchase_invoice` */
-
-/*Table structure for table `purchase_invoice_item` */
-
-DROP TABLE IF EXISTS `purchase_invoice_item`;
-
-CREATE TABLE `purchase_invoice_item` (
-  `purchase_invoice_item` int NOT NULL AUTO_INCREMENT,
-  `purchase_invoice_id` int DEFAULT NULL,
-  `item_id` int DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  `item_unit_cost` decimal(20,0) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`purchase_invoice_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-/*Data for the table `purchase_invoice_item` */
-
 /*Table structure for table `sales_invoice` */
 
 DROP TABLE IF EXISTS `sales_invoice`;
@@ -150,7 +91,7 @@ DROP TABLE IF EXISTS `sales_invoice`;
 CREATE TABLE `sales_invoice` (
   `sales_invoice_id` int NOT NULL AUTO_INCREMENT,
   `sales_invoice_no` varchar(255) DEFAULT NULL,
-  `customer_id` int DEFAULT NULL,
+  `customer_name` varchar(255) DEFAULT NULL,
   `sales_invoice_date` date DEFAULT NULL,
   `sales_invoice_amount` decimal(20,0) DEFAULT NULL,
   `sales_invoice_payment` decimal(20,0) DEFAULT NULL,
@@ -160,9 +101,12 @@ CREATE TABLE `sales_invoice` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`sales_invoice_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `sales_invoice` */
+
+insert  into `sales_invoice`(`sales_invoice_id`,`sales_invoice_no`,`customer_name`,`sales_invoice_date`,`sales_invoice_amount`,`sales_invoice_payment`,`sales_invoice_change`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
+(1,'1212','Sayyid','2024-02-18',1000,0,0,NULL,0,NULL,NULL);
 
 /*Table structure for table `sales_invoice_item` */
 
@@ -180,28 +124,6 @@ CREATE TABLE `sales_invoice_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `sales_invoice_item` */
-
-/*Table structure for table `supplier` */
-
-DROP TABLE IF EXISTS `supplier`;
-
-CREATE TABLE `supplier` (
-  `supplier_id` int NOT NULL AUTO_INCREMENT,
-  `supplier_name` varchar(255) DEFAULT NULL,
-  `supplier_address` text,
-  `supplier_phone` varchar(255) DEFAULT NULL,
-  `data_state` int DEFAULT '0',
-  `created_id` int DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`supplier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-/*Data for the table `supplier` */
-
-insert  into `supplier`(`supplier_id`,`supplier_name`,`supplier_address`,`supplier_phone`,`data_state`,`created_id`,`created_at`,`updated_at`) values 
-(1,'Pabrik Obat Herbal','jakarta,indonesia','086763536',0,1,'2024-02-15 16:01:29','2024-02-16 00:36:56'),
-(2,'Sidomuncul','Jakarta,indonesia','0982137091',0,1,'2024-02-15 16:02:18','2024-02-16 00:36:48');
 
 /*Table structure for table `user` */
 
