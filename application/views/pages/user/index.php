@@ -1,26 +1,117 @@
-<div class="container-fluid">
-    <h1>Data User</h1>
-    <div class="row">
-        <div class="col">
-            <!-- Button trigger modal -->
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahUserModal">
-                <i class="ti ti-plus me-2"></i>Tambah User Baru
-            </button>
+
+
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>
+        <?= $title ?>
+      </h1>
+      <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+        <div class="breadcrumb-item">
+          <?= $title ?>
         </div>
+      </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="tambahUserModal" tabindex="-1" aria-labelledby="tambahUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tambahUserModalLabel">Tambah User Baru</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Isi form tambah user -->
-                    <form action="<?= base_url() ?>User/processAdd" method="POST">
+
+    <?php if ($this->session->flashdata('alert')): ?>
+      <?php echo $this->session->flashdata('alert'); ?>
+    <?php endif; ?>
+
+    <div class="section-body">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h4>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i
+                    class="fas fa-plus"></i> tambah data</button>
+              </h4>
+              <div class="card-header-form">
+                <form action="<?= base_url() ?>Item" method="get">
+                  <div class="input-group">
+                    <input type="text" name="search" class="form-control" value="<?php if ($pencarian != null) {
+                      echo $pencarian;
+                    } ?>" placeholder="Search">
+                    <div class="input-group-btn">
+                      <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-striped table-md table-hover">
+                  <thead>
+                     <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Username</th>
+                        <th>Level</th>
+                        <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+                    <?php
+                $no = 0;
+                foreach ($data_user as $value) :
+                    $no++;
+                ?>
+
+                    <tr>
+                        <td><?= $no ?></td>
+                        <td><?= $value->username ?></td>
+                        <td><?= $value->nama ?></td>
+                        <?php if ($value->level == 1){
+                            echo  '<td>Admin</td>';
+                        }else if($value->level == 2){
+                            echo '<td>Dokter</td>';
+                        }else{
+                            echo '<td>Apoteker</td>';
+
+                        } ?>
+                        <td>
+                            <a href="<?php echo base_url() ?>User/edit/<?= $value->id_user ?>" class="btn btn-warning"><i
+                              class="fas fa-pen"></i> </a>
+                            <a href="#" class="btn btn-danger" onclick="return confirmDelete('<?= $value->id_user ?>');"><i
+                              class="fas fa-trash"></i> </a>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer text-right">
+                    <div class="pagination-container">
+                        <button id="prevPage" class="btn btn-sm btn-primary">Previous</button>
+                          <span id="paginationStatus" class="pagination-status"></span>
+                        <button id="nextPage" class="btn btn-sm btn-primary">Next</button>
+                    </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- modal add data -->
+<div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tambah Data
+          <?= $title ?>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?php echo base_url() ?>User/processAdd" method="POST">
+        <div class="modal-body">
+          <!-- Isi form tambah user -->
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama" required>
@@ -41,67 +132,23 @@
                                 <option value="3">Apoteker</option>
                             </select>
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-
-            </div>
         </div>
-    </div>
-    <!-- End of Modal -->
-
-
+        <div class="modal-footer bg-whitesmoke br">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
-        <div class="col">
-                <div class="d-flex flex-nowrap input-group mb-3">
-                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                </div>
-        </div>
+      </form>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Username</th>
-                    <th>Level</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="myTable">
-                <?php
-                $no = 0;
-                foreach ($data_user as $user) :
-                    $no++;
-                ?>
-
-                    <tr>
-                        <td><?= $no ?></td>
-                        <td><?= $user->username ?></td>
-                        <td><?= $user->nama ?></td>
-                        <?php if ($user->level == 1){
-                            echo  '<td>Admin</td>';
-                        }else if($user->level == 2){
-                            echo '<td>Dokter</td>';
-                        }else{
-                            echo '<td>Apoteker</td>';
-
-                        } ?>
-                        <td>
-                            <div class="d-flex flex-nowrap">
-                                <a href="<?= base_url() ?>User/edit/<?= $user->id_user ?>" class="btn btn-sm btn-warning"><i class="ti ti-pencil"></i></a>
-                                <a href="<?= base_url() ?>User/hapus/<?= $user->id_user ?>" class="btn btn-sm btn-danger"><i class="ti ti-trash"></i></a>
-                                <a href="<?= base_url() ?>User/edit_password/<?= $user->id_user ?>" class="btn btn-sm btn-secondary"><i class="ti ti-pencil">ubah password</i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                <?php endforeach ?>
-            </tbody>
-        </table>
-    </div>
+  </div>
 </div>
+
+<script>
+  function confirmDelete(Id) {
+    if (confirm('Apakah Anda yakin ingin menghapus data ini ?')) {
+      window.location.href = '<?php echo base_url() ?>User/hapus/' + Id;
+    } else {
+      return false;
+    }
+    console.log(Id)
+  }
+</script>

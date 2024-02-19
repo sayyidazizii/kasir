@@ -17,6 +17,9 @@ class user extends CI_Controller {
 	
 	public function index()
 	{
+
+		$data['title'] = 'Pengguna';
+
 		$data_user = $this->input->get('data_user');
 
 		$this->load->view('layout/header');
@@ -26,11 +29,11 @@ class user extends CI_Controller {
 		if ($data_user != null) {
 			$data['data_user'] = $this->M_user->get_search_data($data_user);
 			$data['pencarian'] = $data_user;
-			$this->load->view('user/index', $data);
+			$this->load->view('pages/user/index', $data);
 		} else {
 			$data['data_user'] = $this->M_user->get_data();
 			$data['pencarian'] = null;
-			$this->load->view('user/index', $data);
+			$this->load->view('pages/user/index', $data);
 		}
 
 		$this->load->view('layout/footer');
@@ -53,6 +56,12 @@ class user extends CI_Controller {
 		);
 		
 		$this->db->insert('user', $data);
+		$this->session->set_flashdata(
+			'alert',
+			'<div class="alert alert-success">
+        <p>data berhasil di Tambah</p>
+        </div>'
+		);
         redirect("User");
 	}
 
@@ -64,19 +73,19 @@ class user extends CI_Controller {
 		$this->load->view('layout/header');
 		$this->load->view('layout/sidebar');
 		$this->load->view('layout/navbar');
-		$this->load->view('user/edit', $data);
+		$this->load->view('pages/user/edit', $data);
 		$this->load->view('layout/footer');
 
 	}
 
-	public function edit_password($id_user)
+	public function reset_password($id_user)
 	{
 		$data['data_user'] = $this->M_user->getbyid($id_user);
 
 		$this->load->view('layout/header');
 		$this->load->view('layout/sidebar');
 		$this->load->view('layout/navbar');
-		$this->load->view('user/edit_password', $data);
+		$this->load->view('pages/user/reset_password', $data);
 		$this->load->view('layout/footer');
 
 	}
@@ -97,11 +106,17 @@ class user extends CI_Controller {
 		
 
 		$this->M_user->update($id_user, $data);
+		$this->session->set_flashdata(
+			'alert',
+			'<div class="alert alert-warning">
+        <p>data berhasil di edit</p>
+        </div>'
+		);
         redirect("User");
 	}
 
 
-	public function processEditPassword()
+	public function processResetPassword()
 	{
 		$id_user = $this->input->post('id_user');
 		$password = $this->input->post('password'); 
@@ -124,6 +139,12 @@ class user extends CI_Controller {
 		);
 		
 		$this->M_user->delete($id_user, $data);
+		$this->session->set_flashdata(
+			'alert',
+			'<div class="alert alert-danger">
+        <p>data berhasil di edit</p>
+        </div>'
+		);
         redirect("User");
 	}
 	
