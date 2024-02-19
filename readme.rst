@@ -1,5 +1,5 @@
 
-.. image:: https://github.com/sayyidazizii/kasir/assets/68958131/c54f9945-f103-40ae-95ab-08514d267d7f
+.. image:: https://github.com/sayyidazizii/kasir/blob/main/assets/img/penjualan.png
 		:alt: sales
 
 
