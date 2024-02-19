@@ -66,11 +66,8 @@
                         <?php if ($value->level == 1){
                             echo  '<td>Admin</td>';
                         }else if($value->level == 2){
-                            echo '<td>Dokter</td>';
-                        }else{
-                            echo '<td>Apoteker</td>';
-
-                        } ?>
+                            echo '<td>Kasir</td>';
+                        }?>
                         <td>
                             <a href="<?php echo base_url() ?>User/edit/<?= $value->id_user ?>" class="btn btn-warning"><i
                               class="fas fa-pen"></i> </a>
@@ -126,10 +123,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="level" class="form-label">Level</label>
-                            <select class="form-select" name="level" id="level" reqired>
+                            <select class="form-control" name="level" id="level" reqired>
                                 <option value="1">Admin</option>
-                                <option value="2">Dokter</option>
-                                <option value="3">Apoteker</option>
+                                <option value="2">Kasir</option>
                             </select>
                         </div>
         </div>

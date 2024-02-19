@@ -31,14 +31,17 @@ CREATE TABLE `item` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `item` */
 
 insert  into `item`(`item_id`,`item_name`,`item_code`,`item_unit_price`,`quantity`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
 (1,'Kopi Kapal Api','000001',1500,8,1,0,'2024-02-14 22:50:07','2024-02-18 12:31:40'),
 (2,'Larutan Penyegar Cap badak 50ml','000002',5000,98,1,0,NULL,'2024-02-18 12:31:44'),
-(3,'Sepatu ','000003',100000,100,1,0,NULL,'2024-02-18 12:31:49');
+(3,'Sepatu ','000003',100000,100,1,0,NULL,'2024-02-18 12:31:49'),
+(6,'Baju','000004',50000,100,1,0,'2024-02-19 07:15:07',NULL),
+(7,'Topi','000006',20000,100,1,0,'2024-02-19 07:15:49',NULL),
+(8,'Ikat Pinggang','000007',15000,100,1,0,'2024-02-19 07:16:05',NULL);
 
 /*Table structure for table `item_stock_mutation` */
 
@@ -120,8 +123,7 @@ CREATE TABLE `user` (
 
 insert  into `user`(`id_user`,`username`,`password`,`nama`,`level`,`data_state`) values 
 (1,'Admin','25d55ad283aa400af464c76d713c07ad','Admin','1',0),
-(3,'kasir','e10adc3949ba59abbe56e057f20f883e','Dokter','2',0),
-(4,'pelanggan','827ccb0eea8a706c4c34a16891f84e7b','Apoteker','3',0);
+(3,'kasir','e10adc3949ba59abbe56e057f20f883e','Dokter','2',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
