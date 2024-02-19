@@ -1,6 +1,6 @@
 /*
 SQLyog Professional v13.1.1 (64 bit)
-MySQL - 8.0.30 : Database - kasir
+MySQL - 8.0.30 : Database - kasirku
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 8.0.30 : Database - kasir
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`kasir` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`kasirku` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_generaL_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-USE `kasir`;
+USE `kasirku`;
 
 /*Table structure for table `item` */
 
@@ -31,7 +31,7 @@ CREATE TABLE `item` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_generaL_ci;
 
 /*Data for the table `item` */
 
@@ -58,7 +58,7 @@ CREATE TABLE `item_stock_mutation` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`item_stock_mutation_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_generaL_ci;
 
 /*Data for the table `item_stock_mutation` */
 
@@ -79,7 +79,7 @@ CREATE TABLE `sales_invoice` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`sales_invoice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_generaL_ci;
 
 /*Data for the table `sales_invoice` */
 
@@ -97,7 +97,7 @@ CREATE TABLE `sales_invoice_item` (
   `quantity` int DEFAULT NULL,
   `total` decimal(20,0) DEFAULT NULL,
   PRIMARY KEY (`sales_invoice_item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_generaL_ci;
 
 /*Data for the table `sales_invoice_item` */
 
@@ -117,13 +117,13 @@ CREATE TABLE `user` (
   `level` enum('1','2','3') DEFAULT NULL,
   `data_state` int DEFAULT '0',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_generaL_ci;
 
 /*Data for the table `user` */
 
 insert  into `user`(`id_user`,`username`,`password`,`nama`,`level`,`data_state`) values 
 (1,'Admin','25d55ad283aa400af464c76d713c07ad','Admin','1',0),
-(3,'kasir','e10adc3949ba59abbe56e057f20f883e','Dokter','2',0);
+(3,'kasirku','e10adc3949ba59abbe56e057f20f883e','Dokter','2',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
