@@ -29,6 +29,12 @@
   <link href="<?php echo base_url() ?>assets/select2/dist/css/select2.min.css" rel="stylesheet" />
   <script src="<?php echo base_url() ?>assets/select2/dist/js/select2.min.js"></script>
 
+<style>
+  body {
+    background-color: #f2f2f2; /* Warna semi-abu-abu */
+  }
+</style>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
