@@ -61,7 +61,7 @@ class Item extends CI_Controller
 		$this->session->set_flashdata(
 			'alert',
 			'<div class="alert alert-success">
-        <p>data berhasil di edit</p>
+        <p>data berhasil di Tambah</p>
         </div>'
 		);
 		redirect("Item");

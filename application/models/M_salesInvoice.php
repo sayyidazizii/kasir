@@ -42,4 +42,13 @@ class M_salesInvoice extends CI_Model
         $this->db->update($this->table, $data);
     }
 
+    
+    function latest()
+    {
+        $this->db->select('sales_invoice.*');
+        $this->db->from($this->table);
+        $this->db->order_by('sales_invoice.sales_invoice_id', 'DESC');
+        return $this->db->get()->row();
+    }
+
 }

@@ -42,4 +42,19 @@ class M_item extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+
+    //pengurangan stock
+    public function reduce_stock($item_id, $quantity)
+    {
+        // Ambil stok barang saat ini
+        $current_stock = $this->db->get_where('item', array('item_id' => $item_id))->row()->quantity;
+
+        // Kurangi stok barang dengan jumlah yang dijual
+        $new_stock = $current_stock - $quantity;
+
+        // Perbarui stok barang di database
+        $this->db->where('item_id', $item_id);
+        $this->db->update('item', array('quantity' => $new_stock));
+    }
+
 }

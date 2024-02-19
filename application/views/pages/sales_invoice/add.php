@@ -59,8 +59,8 @@
                 <div class="display-4 text-center" id="total-display">0.00</div>
               </div>
               <div class="text-center">
-                    <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Cari Barang <i
-                    class="fas fa-search"></i></button>
+                    <div class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Cari Barang <i
+                    class="fas fa-search"></i></div>
                 </div>
             </div>
             <div class="card-footer text-right">
@@ -88,8 +88,8 @@
                    
               </tbody>
                <tr>
-                <th colspan='5'></th>
-                <td><input type="hidden" class="form-control" id="total_bayar" name="total_bayar" readonly></td>
+                <th colspan='5'>Total Bayar</th>
+                <td><input type="text" class="form-control" id="total_bayar" name="total_bayar" readonly></td>
               </tr>
               <tr>
                 <th colspan='5'>Bayar</th>
@@ -103,7 +103,7 @@
           </div>
         </div>
         <div class="card-footer text-right">
-          <button class="btn btn-primary" type="submit" id="save">simpan</button>
+          <button class="btn btn-primary" type="submit" >simpan</button>
         </div>
       </div>
       </form>
@@ -175,103 +175,110 @@
 </div>
 
 <script>
-  function selectItem(itemId) {
-    var item = <?= json_encode($item) ?>;
-    var selectedItem = item.find(function(item) {
-      return item.item_id === itemId;
+    function selectItem(itemId) {
+      var item = <?= json_encode($item) ?>;
+      var selectedItem = item.find(function(item) {
+        return item.item_id === itemId;
+      });
+
+
+      if (selectedItem) {
+        var table = $("#table-barang");
+        var newRow = $("<tr>");
+        newRow.append("<td>" + (table.find("tr").length + 1) + "</td>");
+        newRow.append("<td>" + selectedItem.item_name + "</td>");
+        newRow.append("<td>" + selectedItem.item_code + "</td>");
+
+        var quantityInput = $("<input>", { type: "number", value: 1, class: "form-control form-control-sm" });
+        newRow.append($("<td>").append(quantityInput));
+        newRow.append("<td>" + selectedItem.item_unit_price + "</td>");
+
+        var totalCell = $("<td>");
+        newRow.append(totalCell);
+
+        //item id yang di hidden
+        newRow.append("<td hidden>" + selectedItem.item_id + "</td>");
+
+        var deleteButton = $("<button>", { text: "Hapus", class: "btn btn-sm btn-outline-danger" });
+        deleteButton.on("click", function() {
+          $(this).closest("tr").remove();
+          updateTotal();
+        });
+        newRow.append($("<td>").append(deleteButton));
+        table.append(newRow);
+
+        quantityInput.on("input", function() {
+          updateTotal();
+          simpanArray();
+        });
+
+        updateTotal();
+        simpanArray();
+
+        return false;
+      }
+    }
+
+    function updateTotal() {
+      var total = 0;
+      $("#table-barang tr").each(function(index, row) {
+        var price = parseFloat($(row).find("td:eq(4)").text());
+        var quantity = parseInt($(row).find("td:eq(3) input").val());
+        var subtotal = price * quantity;
+        $(row).find("td:eq(5)").text(subtotal.toFixed(2));
+        total += subtotal;
+      });
+
+      //id total display
+      $("#total-display").text(total.toFixed(2));
+
+      //total bayar
+      $("#total_bayar").val(total.toFixed(2));
+
+
+      var bayar = parseFloat($("#bayar").val());
+      var kembalian = bayar - total;
+      $("#kembalian").val(kembalian.toFixed(2));
+    }
+
+    //dari input id bayar
+    $("#bayar").on("input", function() {
+      updateTotal();
     });
 
-    
+    function simpanArray() {
+        var tableRows = $("#table-barang tr");
+        var data = [];
 
-    if (selectedItem) {
+        tableRows.each(function (index, row) {
+            var rowData = {
+                "no"              : $(row).find("td:eq(0)").text(),
+                "item_name"       : $(row).find("td:eq(1)").text(),
+                "item_code"       : $(row).find("td:eq(2)").text(),
+                "quantity"        : $(row).find("td:eq(3) input").val(),
+                "item_unit_price" : $(row).find("td:eq(4)").text(),
+                "total"           : $(row).find("td:eq(5)").text(),
+                "item_id"         : $(row).find("td:eq(6)").text(), // Mengambil item_id dari input hidden
+            };
+            data.push(rowData);
+        });
 
-      var table = document.getElementById("table-barang");
-      var newRow = table.insertRow(table.rows.length);
-      var cellNumber = newRow.insertCell(0);
-      var cellName = newRow.insertCell(1);
-      var cellCode = newRow.insertCell(2);
-      var cellQuantity = newRow.insertCell(3);
-      var cellPrice = newRow.insertCell(4);
-      var cellTotal = newRow.insertCell(5); // Tambahkan sel untuk menampilkan total
-      var cellDelete = newRow.insertCell(6); // Tambahkan sel untuk tombol hapus
-
-      cellNumber.innerHTML = table.rows.length; // Menggunakan table.rows.length sebagai nomor urut
-      cellName.innerHTML = selectedItem.item_name;
-      cellCode.innerHTML = selectedItem.item_code;
-      
-      // Ubah elemen teks menjadi input yang dapat diedit
-      var quantityInput = document.createElement('input');
-      quantityInput.type = 'number';
-      quantityInput.value = 1; // Atur nilai default atau sesuaikan dengan kebutuhan Anda
-      quantityInput.className = 'form-control form-control-sm'; // Ganti dengan kelas CSS yang sesuai jika diperlukan
-      cellQuantity.appendChild(quantityInput);
-
-      cellPrice.innerHTML = selectedItem.item_unit_price;
-
-      // Tambahkan tombol hapus dengan atribut onclick
-      var deleteButton = document.createElement('button');
-      deleteButton.innerHTML = 'Hapus';
-      deleteButton.className = 'btn btn-sm btn-outline-danger';
-      deleteButton.onclick = function() {
-        var row = this.parentNode.parentNode;
-        row.parentNode.removeChild(row);
-        updateTotal(); // Panggil fungsi untuk memperbarui total atau melakukan validasi setelah menghapus
-      };
-      cellDelete.appendChild(deleteButton);
-
-      // Mengupdate total setiap kali input quantity berubah
-      quantityInput.oninput = function() {
-        updateTotal();
-      };
-
-      // Fungsi untuk mengupdate total
-      function updateTotal() {
-        var price = parseFloat(selectedItem.item_unit_price);
-        var quantity = parseInt(quantityInput.value);
-        var total = price * quantity;
-        cellTotal.innerHTML = total.toFixed(2); // Menampilkan total dengan 2 desimal
-
-        // Update total keseluruhan dengan menambahkan total baru
-        totalHargaKeseluruhan = 0; // Reset total keseluruhan
-        var rows = table.querySelectorAll('tr');
-        rows.forEach(function(row) {
-            var cellTotal = row.cells[5]; // Kolom total
-            if (!isNaN(parseFloat(cellTotal.innerHTML))) {
-                totalHargaKeseluruhan += parseFloat(cellTotal.innerHTML);
+        $.ajax({
+            url: "<?php echo base_url() ?>SalesInvoice/simpanSesi",
+            type: "POST",
+            data: {
+              data: data
+            },
+            success: function (response) {
+                console.log(data);
+                // alert('Data berhasil disimpan ke dalam sesi!');
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Terjadi kesalahan saat menyimpan data ke dalam sesi!');
             }
         });
-
-        // Tampilkan total keseluruhan di tempat yang sesuai
-        document.getElementById('total-display').innerHTML = totalHargaKeseluruhan.toFixed(2);
-
-        // Set nilai total bayar sama dengan total keseluruhan
-        document.getElementById('total_bayar').value = totalHargaKeseluruhan.toFixed(2);
-
-      }
-
-        // Menambahkan event listener untuk input bayar
-        var inputBayar = document.getElementById('bayar');
-        inputBayar.addEventListener('input', function() {
-            hitungKembalian();
-        });
-
-        // Fungsi untuk menghitung kembalian
-        function hitungKembalian() {
-            var totalHargaKeseluruhan = parseFloat(document.getElementById('total-display').innerHTML);
-            var bayar = parseFloat(inputBayar.value);
-            var kembalian = bayar - totalHargaKeseluruhan;
-
-            // Menampilkan kembalian di input kembalian
-            var inputKembalian = document.getElementById('kembalian');
-            inputKembalian.value = kembalian.toFixed(2); // Menampilkan kembalian dengan 2 desimal
-        }
-
-      // Panggil fungsi updateTotal() agar total awal terhitung
-      updateTotal();
-
-      return false;
     }
-  } 
 
 
 </script>
