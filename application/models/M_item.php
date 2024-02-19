@@ -36,8 +36,9 @@ class M_item extends CI_Model
     {
         $this->db->like('item_name', $data);
         $this->db->or_like('item_code', $data);
-        $this->db->or_like('item_unit_cost', $data);
+        $this->db->or_like('quantity', $data);
         $this->db->or_like('item_unit_price', $data);
+
 
         return $this->db->get($this->table)->result();
     }
