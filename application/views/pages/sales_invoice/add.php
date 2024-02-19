@@ -165,7 +165,14 @@
                     <?php endforeach ?>
                   </tbody>
                 </table>
-                    </div>
+              </div>
+              <div class="card-footer text-right">
+                <div class="pagination-container">
+                  <button id="prevPage" class="btn btn-sm btn-primary">Previous</button>
+                  <span id="paginationStatus" class="pagination-status"></span>
+                  <button id="nextPage" class="btn btn-sm btn-primary">Next</button>
+              </div>
+              </div>
         </div>
         <div class="modal-footer bg-whitesmoke br">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
