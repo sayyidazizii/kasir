@@ -93,7 +93,7 @@
               </tr>
               <tr>
                 <th colspan='5'>Bayar</th>
-                <td><input type="number" class="form-control form-control-sm" id="bayar" name="bayar"></td>
+                <td><input type="number" class="form-control form-control-sm" id="bayar" name="bayar" required></td>
               </tr>
               <tr>
                 <th colspan='5'>Kembalian</th>
