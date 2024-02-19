@@ -6,10 +6,10 @@ class M_stockMutation extends CI_Model
 
     function get_data()
     {
-        $this->db->select('item_stock.*, item.item_name, item.item_code, item.item_unit_cost, item.item_unit_price');
-        $this->db->from('item_stock');
-        $this->db->join('item', 'item_stock.item_id = item.item_id');
-        $this->db->where('item_stock.data_state', 0);
+        $this->db->select('item_stock_mutation.*, item.item_name, item.item_code, item.item_unit_price');
+        $this->db->from('item_stock_mutation');
+        $this->db->join('item', 'item_stock_mutation.item_id = item.item_id');
+        $this->db->where('item_stock_mutation.data_state', 0);
         return $this->db->get()->result();
 
     }
