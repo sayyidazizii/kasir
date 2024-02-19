@@ -103,6 +103,7 @@
           </div>
         </div>
         <div class="card-footer text-right">
+          <a href="<?= base_url()?>SalesInvoice" class="btn btn-secondary">kembali</a>
           <button class="btn btn-primary" type="submit" >simpan</button>
         </div>
       </div>
