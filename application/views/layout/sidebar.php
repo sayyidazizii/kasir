@@ -13,12 +13,7 @@ $current_url_segment = $this->uri->segment($this->uri->total_segments());
     <ul class="sidebar-menu">
       <li class="menu-header">Dashboard</li>
       <li class="dropdown <?php echo ($current_url_segment == 'Home') ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-home"></i><span>Dashboard</span></a>
-        <ul class="dropdown-menu">
-          <li class="<?php echo ($current_url_segment == 'Home') ? 'active' : ''; ?>">
-            <a class="nav-link" href="<?php echo base_url() ?>Home">Home</a>
-          </li>
-        </ul>
+        <a href="<?php echo base_url() ?>Home" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
       </li>
       <li class="menu-header">Menu</li>
       <li class="dropdown <?php echo ($current_url_segment == 'Item') ? 'active' : ''; ?>">
