@@ -36,34 +36,9 @@ CREATE TABLE `item` (
 /*Data for the table `item` */
 
 insert  into `item`(`item_id`,`item_name`,`item_code`,`item_unit_price`,`quantity`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
-(1,'Kopi Kapal Api','000001',1500,10,1,0,'2024-02-14 22:50:07','2024-02-18 12:31:40'),
-(2,'Larutan Penyegar Cap badak 50ml','000002',5000,100,1,0,NULL,'2024-02-18 12:31:44'),
-(3,'Sepatu ','000003',100000,100,1,0,NULL,'2024-02-18 12:31:49'),
-(4,'1221','12',12,NULL,1,1,NULL,NULL),
-(5,'1','1',1,NULL,1,1,NULL,NULL);
-
-/*Table structure for table `item_stock` */
-
-DROP TABLE IF EXISTS `item_stock`;
-
-CREATE TABLE `item_stock` (
-  `item_stock_id` int NOT NULL AUTO_INCREMENT,
-  `item_id` int DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  `item_unit_cost` decimal(20,0) DEFAULT NULL,
-  `item_unit_price` decimal(20,0) DEFAULT NULL,
-  `item_stock_status` int DEFAULT NULL,
-  `created_id` int DEFAULT NULL,
-  `data_state` int DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`item_stock_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-/*Data for the table `item_stock` */
-
-insert  into `item_stock`(`item_stock_id`,`item_id`,`quantity`,`item_unit_cost`,`item_unit_price`,`item_stock_status`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
-(1,1,50,NULL,NULL,1,1,0,NULL,NULL);
+(1,'Kopi Kapal Api','000001',1500,8,1,0,'2024-02-14 22:50:07','2024-02-18 12:31:40'),
+(2,'Larutan Penyegar Cap badak 50ml','000002',5000,98,1,0,NULL,'2024-02-18 12:31:44'),
+(3,'Sepatu ','000003',100000,100,1,0,NULL,'2024-02-18 12:31:49');
 
 /*Table structure for table `item_stock_mutation` */
 
@@ -106,7 +81,7 @@ CREATE TABLE `sales_invoice` (
 /*Data for the table `sales_invoice` */
 
 insert  into `sales_invoice`(`sales_invoice_id`,`sales_invoice_no`,`customer_name`,`sales_invoice_date`,`sales_invoice_amount`,`sales_invoice_payment`,`sales_invoice_change`,`created_id`,`data_state`,`created_at`,`updated_at`) values 
-(1,'1212','Sayyid','2024-02-18',1000,0,0,NULL,0,NULL,NULL);
+(1,'SI0001','sayyid','2024-02-19',6500,10000,3500,1,0,'2024-02-19 01:18:51',NULL);
 
 /*Table structure for table `sales_invoice_item` */
 
@@ -117,13 +92,15 @@ CREATE TABLE `sales_invoice_item` (
   `sales_invoice_id` int DEFAULT NULL,
   `item_id` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
-  `item_unit_price` decimal(20,0) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `total` decimal(20,0) DEFAULT NULL,
   PRIMARY KEY (`sales_invoice_item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `sales_invoice_item` */
+
+insert  into `sales_invoice_item`(`sales_invoice_item_id`,`sales_invoice_id`,`item_id`,`quantity`,`total`) values 
+(1,1,1,1,1500),
+(2,1,2,1,5000);
 
 /*Table structure for table `user` */
 
@@ -143,8 +120,8 @@ CREATE TABLE `user` (
 
 insert  into `user`(`id_user`,`username`,`password`,`nama`,`level`,`data_state`) values 
 (1,'Admin','25d55ad283aa400af464c76d713c07ad','Admin','1',0),
-(3,'Dokter','e10adc3949ba59abbe56e057f20f883e','Dokter','2',0),
-(4,'Apoteker','827ccb0eea8a706c4c34a16891f84e7b','Apoteker','3',0);
+(3,'kasir','e10adc3949ba59abbe56e057f20f883e','Dokter','2',0),
+(4,'pelanggan','827ccb0eea8a706c4c34a16891f84e7b','Apoteker','3',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
