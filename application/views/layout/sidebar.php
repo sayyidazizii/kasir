@@ -16,7 +16,7 @@ $current_url_segment = $this->uri->segment($this->uri->total_segments());
         <a href="<?php echo base_url() ?>Home" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
       </li>
       <li class="menu-header">Menu</li>
-      <li class="dropdown <?php echo ($current_url_segment == 'Item') ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo ($current_url_segment == 'Item' or $current_url_segment == 'ItemStockMutation' ) ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
           <span>Persediaan</span></a>
         <ul class="dropdown-menu">
