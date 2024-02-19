@@ -33,10 +33,10 @@
               <div class="container-fluid">
                 <label for="sales_invoice_date">Tanggal</label>
                 <input type="date" name="sales_invoice_date" id="sales_invoice_date"
-                  class="form-control form-control-sm" required>
+                  class="form-control form-control-sm border-dark" required>
                 <label for="customer_name">Pelanggan</label>
                   <input type="text" name="customer_name" id="customer_name"
-                  class="form-control form-control-sm" required>
+                  class="form-control form-control-sm border-dark" required>
               </div>
             </div>
             <div class="card-footer text-right">
@@ -56,10 +56,10 @@
             </div>
             <div class="card-body p-0 mt-2">
               <div class="container-fluid">
-                <div class="display-4 text-center" id="total-display">0.00</div>
+                <div class="display-4  text-center" id="total-display">0.00</div>
               </div>
               <div class="text-center">
-                    <div class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Cari Barang <i
+                    <div class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">Cari Barang <i
                     class="fas fa-search"></i></div>
                 </div>
             </div>
@@ -89,15 +89,15 @@
               </tbody>
                <tr>
                 <th colspan='5'>Total Bayar</th>
-                <td><input type="text" class="form-control" id="total_bayar" name="total_bayar" readonly></td>
+                <td><input type="text" class="form-control form-control-sm" id="total_bayar" name="total_bayar" readonly></td>
               </tr>
               <tr>
                 <th colspan='5'>Bayar</th>
-                <td><input type="number" class="form-control" id="bayar" name="bayar"></td>
+                <td><input type="number" class="form-control form-control-sm" id="bayar" name="bayar"></td>
               </tr>
               <tr>
                 <th colspan='5'>Kembalian</th>
-                <td><input type="number" class="form-control" id="kembalian" name="kembalian" readonly></td>
+                <td><input type="number" class="form-control form-control-sm" id="kembalian" name="kembalian" readonly></td>
               </tr>
             </table>
           </div>
@@ -123,7 +123,7 @@
         </button>
       </div>
         <div class="modal-body">
-          <input type="text" name="search" id="myInput" class="form-control mb-2" placeholder="Cari Barang...">
+          <input type="text" name="search" id="myInput" class="form-control form-control-sm mb-2" placeholder="Cari Barang...">
           <div class="table-responsive">
           <table class="table table-striped table-md table-hover">
                   <thead>
@@ -196,7 +196,7 @@
         newRow.append("<td>" + selectedItem.item_name + "</td>");
         newRow.append("<td>" + selectedItem.item_code + "</td>");
 
-        var quantityInput = $("<input>", { type: "number", value: 1, class: "form-control form-control-sm" });
+        var quantityInput = $("<input>", { type: "number", value: 1, class: "form-control form-control-sm border-dark" });
         newRow.append($("<td>").append(quantityInput));
         newRow.append("<td>" + selectedItem.item_unit_price + "</td>");
 

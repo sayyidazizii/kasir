@@ -82,6 +82,8 @@
                                                 <td>
                                                     <a href="<?php echo base_url() ?>salesInvoice/edit/<?= $value->sales_invoice_id ?>"
                                                         class="btn btn-warning"><i class="fas fa-pen"></i> </a>
+                                                        <a href="<?php echo base_url() ?>salesInvoice/detail/<?= $value->sales_invoice_id ?>"
+                                                        class="btn btn-info"><i class="fas fa-eye"></i> </a>
                                                     <a href="#" class="btn btn-danger"
                                                         onclick="return confirmDelete('<?= $value->sales_invoice_id ?>');"><i
                                                             class="fas fa-trash"></i> </a>

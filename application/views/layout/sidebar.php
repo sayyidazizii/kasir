@@ -26,7 +26,7 @@ $current_url_segment = $this->uri->segment($this->uri->total_segments());
           <span>Persediaan</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link <?php echo ($current_url_segment == 'Item') ? 'active' : ''; ?>" href="<?php echo base_url() ?>Item">Barang</a></li>
-          <li><a class="nav-link <?php echo ($current_url_segment == 'Item-Stock-Mutation') ? 'active' : ''; ?>" href="<?php echo base_url() ?>ItemStock">Mutasi Stock</a></li>
+          <li><a class="nav-link <?php echo ($current_url_segment == 'ItemStockMutation') ? 'active' : ''; ?>" href="<?php echo base_url() ?>ItemStockMutation">Mutasi Stock</a></li>
         </ul>
       </li>
       <li class="dropdown <?php echo ($current_url_segment == 'SalesInvoice') ? 'active' : ''; ?>">
