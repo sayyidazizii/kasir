@@ -10,8 +10,7 @@
 </div>
 
 <script>
-  // In your Javascript (external .js resource or <script> tag)
-  $('.js-example-basic-single').select2();
+  
 
 
 

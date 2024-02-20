@@ -70,7 +70,7 @@ class SalesInvoice extends CI_Controller
             return 'SI0001';
         }
 
-        $string = preg_replace("/[^0-9\.]/", '', $latest->no_rm);
+        $string = preg_replace("/[^0-9\.]/", '', $latest->sales_invoice_no);
 
         return 'SI' . sprintf('%04d', $string + 1);
     }
